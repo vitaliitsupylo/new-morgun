@@ -1,0 +1,8 @@
+@mixin before_fig($wid,$hei,$bgc) {
+  content: "";
+  display: block;
+  position: absolute;
+  width: $wid;
+  height: $hei;
+  background-color: $bgc;
+}

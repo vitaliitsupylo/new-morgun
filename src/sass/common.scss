@@ -1,0 +1,57 @@
+body {
+  font: normal 1rem/1.5 $sylfaen;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: rem(196px);
+}
+.container {
+  width: 100%;
+  max-width: rem(1320px);
+  margin: auto;
+  padding: 0 rem(10px);
+}
+.btn {
+  display: block;
+  width: 100%;
+  height: rem(80px);
+  max-width: rem(358px);
+  border: solid rem(3px) $sky-color;
+  text-align: center;
+  color: $sky-color;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  font-size: rem(22px);
+  line-height: rem(76px);
+  overflow: hidden;
+  transition: color .3s;
+  span {
+    position: relative;
+    z-index: 2;
+  }
+  i {
+    position: absolute;
+    width: 93.8%;
+    z-index: 1;
+    height: 120%;
+    border: solid rem(3px) $sky-color;
+    top: -10%;
+    transform: skew(-18deg);
+    left: 3.2%;
+    overflow: hidden;
+    &::before {
+      @include before_fig(106%, 0, $sky-color);
+      transition: height .3s;
+      bottom: 0;
+      left: -3%;
+    }
+  }
+  &:hover {
+    color: #fff;
+    i::before {
+      height: 100%;
+    }
+  }
+
+}
