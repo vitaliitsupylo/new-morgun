@@ -72,6 +72,9 @@
     &:hover, &.active {
       color: #fff;
     }
+    &.active{
+      background-color: $sky-color;
+    }
   }
 
 }
