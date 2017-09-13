@@ -87,10 +87,12 @@ module.exports = __webpack_require__(4);
     const mainRight = document.querySelector('.slider_main .control_right');
     /*move lines*/
     const blockLine = document.querySelector('.about_us');
-    const lineArr = document.querySelectorAll('.about_us [id^="line"] [class^="st"]');
+    const lineArr = document.querySelectorAll('.about_us .line>[class^="st"]');
     /*practice*/
     const blockLinePractice = document.querySelector('.practice');
-    const lineArrPractice = document.querySelectorAll('.practice [id^="line"] [class^="st"]');
+    let lineArrPractice = document.querySelectorAll('.practice .line>[class^="st"]');
+    let arrOne = [lineArrPractice[0]];
+    let arrTwo = [lineArrPractice[1]];
 
 
     /*main slider*/
@@ -98,17 +100,26 @@ module.exports = __webpack_require__(4);
         (__webpack_require__(2))(mainArrElem, mainLeft, mainRight);
     }
     /*move lines*/
-    let drawLine = __webpack_require__(3);
+    let funcDraw = __webpack_require__(3);
+    let drawLine = funcDraw();
+    let drawLine2 = funcDraw();
+    let drawLine3 = funcDraw();
 
     /*main scroll*/
-    // window.addEventListener('scroll', () => {
-    //     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        drawLine(lineArr, blockLine);
-        drawLine(lineArrPractice, blockLinePractice);
-        // console.log(lineArrPractice[0])
+    window.addEventListener('scroll', () => {
+        let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        if (blockLine) {
+            drawLine(lineArr, blockLine, scrolled);
+        }
+        if (blockLinePractice) {
+            drawLine2(arrOne, blockLinePractice, scrolled);
+        }
+        if (blockLinePractice) {
+            drawLine3(arrTwo, blockLinePractice, scrolled);
+        }
 
 
-    // });
+    });
 
 
 })();
@@ -154,7 +165,8 @@ module.exports = (arrElem, left, right) => {
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = (arrLine, block, scroll) => {
+module.exports = () => {
+
     let yak = 0;
     let del = 0;
     let start = 0;
@@ -169,32 +181,23 @@ module.exports = (arrLine, block, scroll) => {
         }
     }
 
-    if (!allLength) {
-        for (let i = 0; i < arrLine.length; i++) {
-            let valLength = arrLine[i].getTotalLength();
-            arrLine[i].style.strokeDasharray = `${valLength},${valLength}`;
-            arrLine[i].style.strokeDashoffset = valLength;
-            allLength += valLength;
-            arrProm.push(new elem(arrLine[i], valLength));
-        }
-    }
-
     function moveLine(arrObj, direction) {
         let move = (allLength / 100) * start;
 
         if (direction) {
-            if (arrObj[yak].value <= move && yak < arrObj.length - 1) {
+            if (minus + arrObj[yak].value <= move && yak < arrObj.length - 1) {
+                minus += arrObj[yak].value;
+                arrObj[yak].link.style.strokeDashoffset = `${0}`;
                 yak++;
-                minus += arrObj[yak - 1].value;
             }
         }
         else {
-            if (allLength - arrObj[yak].value >= move && yak > 0) {
+            if (minus > move && yak > 0) {
+                arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value}`;
                 yak--;
-                minus -= arrObj[0].value;
+                minus -= arrObj[yak].value;
             }
         }
-        console.log(yak,minus);
 
         if (yak > 0) {
             arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value - (move - minus) }`;
@@ -205,20 +208,26 @@ module.exports = (arrLine, block, scroll) => {
         }
     }
 
-
     function procent(step, row) {
         return Math.round(row / (step / 100));
     }
 
-
-    window.addEventListener('scroll', () => {
-
-        let scroll = window.pageYOffset || document.documentElement.scrollTop;
+    return function (arrLine, block, scroll) {
 
         let min = block.getBoundingClientRect().top - window.innerHeight * .8;
         let max = block.getBoundingClientRect().bottom - window.innerHeight * .8;
         let step = min - max;
         let boll = (min > 0 && max < 0 || min < 0 && max > 0 );
+
+        if (!allLength) {
+            for (let i = 0; i < arrLine.length; i++) {
+                let valLength = arrLine[i].getTotalLength();
+                arrLine[i].style.strokeDasharray = `${valLength},${valLength}`;
+                arrLine[i].style.strokeDashoffset = valLength;
+                allLength += valLength;
+                arrProm.push(new elem(arrLine[i], valLength));
+            }
+        }
 
 
         if (del < scroll && boll) {
@@ -232,9 +241,10 @@ module.exports = (arrLine, block, scroll) => {
         }
         del = scroll;
 
-    });
+    }
 
 };
+
 
 /***/ }),
 /* 4 */

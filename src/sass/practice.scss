@@ -1,12 +1,156 @@
 .practice {
-  //height: 2000px;
-  #line3 {
-    width: 50%;
-    margin-top: rem(200px);
-    height: rem(568px);
-    //polyline {
-    //  stroke-dasharray: 300%;
-    //  stroke-dashoffset: 300%;
-    //}
+  .title_block{
+    text-align: right;
+    margin-right: 20%;
+    position: relative;
+    z-index: 5;
+    background-color: #fff;
   }
+  .container{
+    padding: rem(90px);
+    position: relative;
+  }
+  .practice_content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: rem(100px);
+    .practice_content_left{
+      width: 50%;
+      margin-right: rem(30px);
+      .practice_card{
+        height: rem(640px);
+      }
+    }
+    .practice_content_right{
+      width: 50%;
+      padding-top: rem(60px);
+      display: flex;
+      flex-wrap: wrap;
+      .practice_card{
+        height: rem(240px);
+        width: 100%;
+        margin-bottom: rem(30px);
+        &:nth-child(2),&:nth-child(3){
+          flex: 1 1 40%;
+          width: 50%;
+        }
+        &:nth-child(2){
+          margin-right: rem(30px);
+        }
+      }
+    }
+  }
+  .practice_top_right{
+    position: absolute;
+    right: rem(-40px);
+    top: rem(110px);
+    width: rem(320px);
+    height: rem(570px);
+  }
+  .practice_top_left{
+    position: absolute;
+    left: rem(-40px);
+    top: rem(110px);
+    width: rem(320px);
+    height: rem(570px);
+  }
+  .st1 {
+      fill: none;
+      stroke: #3EC0DD;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+  }
+}
+.practice_card{
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: rem(10px);
+  img{
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+  }
+  a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+  .practice_card_wrap{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(40, 40, 64, .65);
+    &::before,&::after{
+      content: "";
+      position: absolute;
+      z-index: 3;
+      transition: .3s;
+      border: solid rem(1px) $sky-color;
+      background-color: rgba(255,255,255,.045);
+    }
+    &::before{
+      width: calc(100% - .9375rem);
+      height: calc(100% - .625rem);
+    }
+    &::after{
+      width: calc(100% - .625rem);
+      height: calc(100% - .9375rem);
+    }
+    .practice_card_title{
+      text-align: center;
+      text-transform: uppercase;
+      font-size: rem(24px);
+      letter-spacing: rem(0.5px);
+      color: #fff;
+      margin-bottom: rem(15px);
+      transition: margin-bottom .3s;
+    }
+    .practice_card_text{
+      margin-bottom: rem(-40px);
+      text-align: center;
+      font-size: rem(20px);
+      margin-top: rem(10px);
+      opacity: 0;
+      transition: .3s;
+    }
+    .practice_card_line{
+      display: block;
+      width: rem(86px);
+      height: rem(1px);
+      background-color: #fff;
+
+    }
+    &:hover{
+        &::before,&::after{
+            background-color: rgba(255,255,255,0);
+        }
+        .practice_card_title{
+          margin-bottom: rem(5px);
+        }
+        .practice_card_text{
+          opacity: 1;
+          margin-bottom: 0;
+          margin-top: rem(5px);
+        }
+    }
+  }
+
 }

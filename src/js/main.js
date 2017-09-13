@@ -10,10 +10,12 @@
     const mainRight = document.querySelector('.slider_main .control_right');
     /*move lines*/
     const blockLine = document.querySelector('.about_us');
-    const lineArr = document.querySelectorAll('.about_us [id^="line"] [class^="st"]');
+    const lineArr = document.querySelectorAll('.about_us .line>[class^="st"]');
     /*practice*/
     const blockLinePractice = document.querySelector('.practice');
-    const lineArrPractice = document.querySelectorAll('.practice [id^="line"] [class^="st"]');
+    let lineArrPractice = document.querySelectorAll('.practice .line>[class^="st"]');
+    let arrOne = [lineArrPractice[0]];
+    let arrTwo = [lineArrPractice[1]];
 
 
     /*main slider*/
@@ -21,17 +23,26 @@
         (require('./modules/main-slider'))(mainArrElem, mainLeft, mainRight);
     }
     /*move lines*/
-    let drawLine = require('./modules/line2');
+    let funcDraw = require('./modules/line');
+    let drawLine = funcDraw();
+    let drawLine2 = funcDraw();
+    let drawLine3 = funcDraw();
 
     /*main scroll*/
-    // window.addEventListener('scroll', () => {
-    //     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        drawLine(lineArr, blockLine);
-        drawLine(lineArrPractice, blockLinePractice);
-        // console.log(lineArrPractice[0])
+    window.addEventListener('scroll', () => {
+        let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        if (blockLine) {
+            drawLine(lineArr, blockLine, scrolled);
+        }
+        if (blockLinePractice) {
+            drawLine2(arrOne, blockLinePractice, scrolled);
+        }
+        if (blockLinePractice) {
+            drawLine3(arrTwo, blockLinePractice, scrolled);
+        }
 
 
-    // });
+    });
 
 
 })();

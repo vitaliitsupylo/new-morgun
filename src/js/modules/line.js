@@ -1,63 +1,79 @@
-let yak = 150;
-let del = 0;
-let start = 0;
-let defEl = 0;
-let targ = 0;
-module.exports = (arrLine, block, scroll) => {
-    let min = block.getBoundingClientRect().top - window.innerHeight * .8;
-    let max = block.getBoundingClientRect().bottom - window.innerHeight * .8;
-    let step = min - max;
-    let boll = (min > 0 && max < 0 || min < 0 && max > 0 );
+module.exports = () => {
 
+    let yak = 0;
+    let del = 0;
+    let start = 0;
+    let allLength = 0;
+    let arrProm = [];
+    let minus = 0;
 
-    // function procent(step, row) {
-    //     let int = row / (step / 100);
-    //     return int * (150 / 100);
-    // }
-
-    if(!defEl){
-        for(let i = 0; i < arrLine.length; i++){
-            defEl+= arrLine[i].getTotalLength();
+    class elem {
+        constructor(dom, val) {
+            this.value = val;
+            this.link = dom;
         }
     }
-    console.log(defEl);
+
+    function moveLine(arrObj, direction) {
+        let move = (allLength / 100) * start;
+
+        if (direction) {
+            if (minus + arrObj[yak].value <= move && yak < arrObj.length - 1) {
+                minus += arrObj[yak].value;
+                arrObj[yak].link.style.strokeDashoffset = `${0}`;
+                yak++;
+            }
+        }
+        else {
+            if (minus > move && yak > 0) {
+                arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value}`;
+                yak--;
+                minus -= arrObj[yak].value;
+            }
+        }
+
+        if (yak > 0) {
+            arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value - (move - minus) }`;
+        }
+        else {
+            arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value - move}`;
+
+        }
+    }
 
     function procent(step, row) {
-        return row / (step / 100);
+        return Math.round(row / (step / 100));
     }
 
-    function noNull(con, len) {
-        let coefficient = (300 / 100);
-        if (con > 0) {
-            return (start * coefficient) * len;
-        } else {
-            return yak + (start * coefficient) * len;
+    return function (arrLine, block, scroll) {
+
+        let min = block.getBoundingClientRect().top - window.innerHeight * .8;
+        let max = block.getBoundingClientRect().bottom - window.innerHeight * .8;
+        let step = min - max;
+        let boll = (min > 0 && max < 0 || min < 0 && max > 0 );
+
+        if (!allLength) {
+            for (let i = 0; i < arrLine.length; i++) {
+                let valLength = arrLine[i].getTotalLength();
+                arrLine[i].style.strokeDasharray = `${valLength},${valLength}`;
+                arrLine[i].style.strokeDashoffset = valLength;
+                allLength += valLength;
+                arrProm.push(new elem(arrLine[i], valLength));
+            }
         }
-    }
-
-    function overkill(arr) {
-        let count = arr.length;
-        let nowCount = Math.floor(start / (100 / count));
-        arr[nowCount].style.strokeDasharray = `${noNull(nowCount, count)}%`;
-    }
 
 
-    if (del < scroll && boll) {
-        start = procent(step, min);
-        // arrLine[0].style.strokeDasharray = `${yak + start}%`;
-        // arrLine[1].style.strokeDasharray = `${yak + start}%`;
-        overkill(arrLine)
-        console.log(start)
+        if (del < scroll && boll) {
+            start = procent(step, min);
+            moveLine(arrProm, true);
 
-    } else if (del > scroll && boll) {
-        start = procent(step, min);
-        // arrLine[0].style.strokeDasharray = `${yak + start}%`;
-        // arrLine[1].style.strokeDasharray = `${yak + start}%`;
-        overkill(arrLine)
-        console.log(start)
+        } else if (del > scroll && boll) {
+            start = procent(step, min);
+            moveLine(arrProm, false);
+
+        }
+        del = scroll;
 
     }
 
-
-    del = scroll;
 };

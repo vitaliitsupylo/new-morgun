@@ -1,26 +1,20 @@
 .about_us {
   background-color: #fff;
   position: relative;
-  #line1 {
+  .about_top {
     position: absolute;
     top: 0;
     z-index: 3;
-    right: 28.2vw;
+    right: 28.7vw;
     height: rem(195px);
     width: rem(3px);
-    //line {
-    //  stroke-dashoffset: 0;
-    //}
   }
-  #line2{
+  .about_left{
     position: absolute;
-    top: rem(310px);
+    top: rem(307px);
     z-index: 3;
     left: 0;
     height: rem(3px);
-    //line {
-    //  stroke-dashoffset: 0;
-    //}
   }
   .st0 {
     fill: none;
@@ -39,6 +33,8 @@
     width: 50%;
     padding-top: rem(65px);
     margin-right: rem(20px);
+    position: relative;
+    z-index: 2;
     .title_block {
       margin-bottom: rem(40px);
       padding-left: rem(30px);
@@ -137,5 +133,15 @@
   right: 0;
   z-index: 1;
   opacity: .13;
-
+}
+.about_triangle{
+  position: absolute;
+  bottom: 15.5%;
+  left: 0;
+  width: 0;
+  z-index: 1;
+	height: 0;
+  opacity: .48;
+	border-bottom: 20vw solid #f7f7f7;
+	border-right: 15vw solid transparent;
 }

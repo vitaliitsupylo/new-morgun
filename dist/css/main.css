@@ -293,16 +293,16 @@ body {
 .about_us {
   background-color: #fff;
   position: relative; }
-  .about_us #line1 {
+  .about_us .about_top {
     position: absolute;
     top: 0;
     z-index: 3;
-    right: 28.2vw;
+    right: 28.7vw;
     height: 12.1875rem;
     width: 0.1875rem; }
-  .about_us #line2 {
+  .about_us .about_left {
     position: absolute;
-    top: 19.375rem;
+    top: 19.1875rem;
     z-index: 3;
     left: 0;
     height: 0.1875rem; }
@@ -320,7 +320,9 @@ body {
   .about_us .about_us_left {
     width: 50%;
     padding-top: 4.0625rem;
-    margin-right: 1.25rem; }
+    margin-right: 1.25rem;
+    position: relative;
+    z-index: 2; }
     .about_us .about_us_left .title_block {
       margin-bottom: 2.5rem;
       padding-left: 1.875rem; }
@@ -397,9 +399,147 @@ body {
   z-index: 1;
   opacity: .13; }
 
-.practice #line3 {
-  width: 50%;
-  margin-top: 12.5rem;
-  height: 35.5rem; }
+.about_triangle {
+  position: absolute;
+  bottom: 15.5%;
+  left: 0;
+  width: 0;
+  z-index: 1;
+  height: 0;
+  opacity: .48;
+  border-bottom: 20vw solid #f7f7f7;
+  border-right: 15vw solid transparent; }
+
+.practice .title_block {
+  text-align: right;
+  margin-right: 20%;
+  position: relative;
+  z-index: 5;
+  background-color: #fff; }
+
+.practice .container {
+  padding: 5.625rem;
+  position: relative; }
+
+.practice .practice_content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.25rem; }
+  .practice .practice_content .practice_content_left {
+    width: 50%;
+    margin-right: 1.875rem; }
+    .practice .practice_content .practice_content_left .practice_card {
+      height: 40rem; }
+  .practice .practice_content .practice_content_right {
+    width: 50%;
+    padding-top: 3.75rem;
+    display: flex;
+    flex-wrap: wrap; }
+    .practice .practice_content .practice_content_right .practice_card {
+      height: 15rem;
+      width: 100%;
+      margin-bottom: 1.875rem; }
+      .practice .practice_content .practice_content_right .practice_card:nth-child(2), .practice .practice_content .practice_content_right .practice_card:nth-child(3) {
+        flex: 1 1 40%;
+        width: 50%; }
+      .practice .practice_content .practice_content_right .practice_card:nth-child(2) {
+        margin-right: 1.875rem; }
+
+.practice .practice_top_right {
+  position: absolute;
+  right: -2.5rem;
+  top: 6.875rem;
+  width: 20rem;
+  height: 35.625rem; }
+
+.practice .practice_top_left {
+  position: absolute;
+  left: -2.5rem;
+  top: 6.875rem;
+  width: 20rem;
+  height: 35.625rem; }
+
+.practice .st1 {
+  fill: none;
+  stroke: #3EC0DD;
+  stroke-width: 3;
+  stroke-miterlimit: 10; }
+
+.practice_card {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0.625rem; }
+  .practice_card img {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0; }
+  .practice_card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3; }
+  .practice_card .practice_card_wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(40, 40, 64, 0.65); }
+    .practice_card .practice_card_wrap::before, .practice_card .practice_card_wrap::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      transition: .3s;
+      border: solid 0.0625rem #1dc1e4;
+      background-color: rgba(255, 255, 255, 0.045); }
+    .practice_card .practice_card_wrap::before {
+      width: calc(100% - .9375rem);
+      height: calc(100% - .625rem); }
+    .practice_card .practice_card_wrap::after {
+      width: calc(100% - .625rem);
+      height: calc(100% - .9375rem); }
+    .practice_card .practice_card_wrap .practice_card_title {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.5rem;
+      letter-spacing: 0.03125rem;
+      color: #fff;
+      margin-bottom: 0.9375rem;
+      transition: margin-bottom .3s; }
+    .practice_card .practice_card_wrap .practice_card_text {
+      margin-bottom: -2.5rem;
+      text-align: center;
+      font-size: 1.25rem;
+      margin-top: 0.625rem;
+      opacity: 0;
+      transition: .3s; }
+    .practice_card .practice_card_wrap .practice_card_line {
+      display: block;
+      width: 5.375rem;
+      height: 0.0625rem;
+      background-color: #fff; }
+    .practice_card .practice_card_wrap:hover::before, .practice_card .practice_card_wrap:hover::after {
+      background-color: rgba(255, 255, 255, 0); }
+    .practice_card .practice_card_wrap:hover .practice_card_title {
+      margin-bottom: 0.3125rem; }
+    .practice_card .practice_card_wrap:hover .practice_card_text {
+      opacity: 1;
+      margin-bottom: 0;
+      margin-top: 0.3125rem; }
 
 /*# sourceMappingURL=main.css.map*/
