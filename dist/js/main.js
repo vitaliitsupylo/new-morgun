@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(4);
 
 
 /***/ }),
@@ -87,21 +87,28 @@ module.exports = __webpack_require__(2);
     const mainRight = document.querySelector('.slider_main .control_right');
     /*move lines*/
     const blockLine = document.querySelector('.about_us');
-    const lineArr = document.querySelectorAll('.about_us [id^="line"]>line');
+    const lineArr = document.querySelectorAll('.about_us [id^="line"] [class^="st"]');
+    /*practice*/
+    const blockLinePractice = document.querySelector('.practice');
+    const lineArrPractice = document.querySelectorAll('.practice [id^="line"] [class^="st"]');
 
 
     /*main slider*/
     if (mainArrElem) {
-        (__webpack_require__(7))(mainArrElem, mainLeft, mainRight);
+        (__webpack_require__(2))(mainArrElem, mainLeft, mainRight);
     }
     /*move lines*/
-    let drawLine = __webpack_require__(8);
+    let drawLine = __webpack_require__(3);
 
     /*main scroll*/
-    window.addEventListener('scroll', () => {
-        let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        drawLine(lineArr, blockLine, scrolled);
-    });
+    // window.addEventListener('scroll', () => {
+    //     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        drawLine(lineArr, blockLine);
+        drawLine(lineArrPractice, blockLinePractice);
+        // console.log(lineArrPractice[0])
+
+
+    // });
 
 
 })();
@@ -109,16 +116,6 @@ module.exports = __webpack_require__(2);
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = (arrElem, left, right) => {
@@ -154,74 +151,96 @@ module.exports = (arrElem, left, right) => {
 };
 
 /***/ }),
-/* 8 */
+/* 3 */
 /***/ (function(module, exports) {
 
-let yak = 150;
-let del = 0;
-let start = 0;
-let defEl = 0;
 module.exports = (arrLine, block, scroll) => {
-    let min = block.getBoundingClientRect().top - window.innerHeight * .8;
-    let max = block.getBoundingClientRect().bottom - window.innerHeight * .8;
-    let step = min - max;
-    let boll = (min > 0 && max < 0 || min < 0 && max > 0 );
+    let yak = 0;
+    let del = 0;
+    let start = 0;
+    let allLength = 0;
+    let arrProm = [];
+    let minus = 0;
 
-
-    function procent(step, row) {
-        let int = row / (step / 100);
-        return int * (150 / 100);
-    }
-
-    // function procent(step, row) {
-    //     return row / (step / 100);
-    // }
-    function noNull(con) {
-        // return (con>0)?150/(con+1):0;
-
-        if (con > 0) {
-            let difference = 150 / (con + 1);
-
-            return (yak - difference) + (start * -(con - 4));
-
-
-        } else {
-            return yak + (start * -(con - 2));
+    class elem {
+        constructor(dom, val) {
+            this.value = val;
+            this.link = dom;
         }
     }
 
-    function overkill(arr) {
-        let count = arr.length;
-        let nowCount = Math.floor(start / (150 / count));
+    if (!allLength) {
+        for (let i = 0; i < arrLine.length; i++) {
+            let valLength = arrLine[i].getTotalLength();
+            arrLine[i].style.strokeDasharray = `${valLength},${valLength}`;
+            arrLine[i].style.strokeDashoffset = valLength;
+            allLength += valLength;
+            arrProm.push(new elem(arrLine[i], valLength));
+        }
+    }
 
-    console.log(start,start * 1.8);
-        // if (defEl < nowCount) {
-        //     defEl = nowCount;
-        // } else if (defEl > nowCount) {
-        //     defEl = nowCount;
-        // }
-        defEl = nowCount + 1;
+    function moveLine(arrObj, direction) {
+        let move = (allLength / 100) * start;
 
-        arr[nowCount].style.strokeDasharray = `${noNull(nowCount)}%`;
+        if (direction) {
+            if (arrObj[yak].value <= move && yak < arrObj.length - 1) {
+                yak++;
+                minus += arrObj[yak - 1].value;
+            }
+        }
+        else {
+            if (allLength - arrObj[yak].value >= move && yak > 0) {
+                yak--;
+                minus -= arrObj[0].value;
+            }
+        }
+        console.log(yak,minus);
+
+        if (yak > 0) {
+            arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value - (move - minus) }`;
+        }
+        else {
+            arrObj[yak].link.style.strokeDashoffset = `${arrObj[yak].value - move}`;
+
+        }
     }
 
 
-    if (del < scroll && boll) {
-        start = procent(step, min);
-        // arrLine[0].style.strokeDasharray = `${yak + start}%`;
-        // arrLine[1].style.strokeDasharray = `${yak + start}%`;
-        overkill(arrLine)
-
-    } else if (del > scroll && boll) {
-        start = procent(step, min);
-        // arrLine[0].style.strokeDasharray = `${yak + start}%`;
-        // arrLine[1].style.strokeDasharray = `${yak + start}%`;
-        overkill(arrLine)
+    function procent(step, row) {
+        return Math.round(row / (step / 100));
     }
 
 
-    del = scroll;
+    window.addEventListener('scroll', () => {
+
+        let scroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        let min = block.getBoundingClientRect().top - window.innerHeight * .8;
+        let max = block.getBoundingClientRect().bottom - window.innerHeight * .8;
+        let step = min - max;
+        let boll = (min > 0 && max < 0 || min < 0 && max > 0 );
+
+
+        if (del < scroll && boll) {
+            start = procent(step, min);
+            moveLine(arrProm, true);
+
+        } else if (del > scroll && boll) {
+            start = procent(step, min);
+            moveLine(arrProm, false);
+
+        }
+        del = scroll;
+
+    });
+
 };
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -6,22 +6,21 @@
     top: 0;
     z-index: 3;
     right: 28.2vw;
+    height: rem(195px);
     width: rem(3px);
-    line {
-      stroke-dasharray: 150%;
-      stroke-dashoffset: 150%;
-    }
+    //line {
+    //  stroke-dashoffset: 0;
+    //}
   }
   #line2{
     position: absolute;
-    top: 0;
+    top: rem(310px);
     z-index: 3;
     left: 0;
     height: rem(3px);
-    line {
-      stroke-dasharray: 150%;
-      stroke-dashoffset: 150%;
-    }
+    //line {
+    //  stroke-dashoffset: 0;
+    //}
   }
   .st0 {
     fill: none;
@@ -104,16 +103,20 @@
         display: block;
         font-size: rem(55px);
         position: relative;
-        &::before,&::after{
-          @include before_fig(20%,rem(3px),$sky-color);
-          top: 49%;
+        svg{
+          position: absolute;
+          width: 80px;
         }
-        &::before{
-          left:12%;
-        }
-        &::after{
-          right:12%;
-        }
+        //&::before,&::after{
+        //  @include before_fig(20%,rem(3px),$sky-color);
+        //  top: 49%;
+        //}
+        //&::before{
+        //  left:12%;
+        //}
+        //&::after{
+        //  right:12%;
+        //}
       }
     }
   }

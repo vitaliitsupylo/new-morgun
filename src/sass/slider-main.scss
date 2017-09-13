@@ -14,6 +14,7 @@
     justify-content: center;
     align-items: center;
     opacity: 0;
+    z-index: 1;
     transition: .5s;
     .slider_main_img {
       position: absolute;
@@ -59,6 +60,7 @@
       opacity: 1;
       transition: .5s .3s;
       transform: scale(1);
+      z-index: 2;
     }
   }
   .slider_main_control {

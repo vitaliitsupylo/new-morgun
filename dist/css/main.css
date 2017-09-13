@@ -61,7 +61,8 @@ body {
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
-  padding-top: 12.25rem; }
+  padding-top: 12.25rem;
+  padding-bottom: 62.5rem; }
 
 .container {
   width: 100%;
@@ -219,6 +220,7 @@ body {
     justify-content: center;
     align-items: center;
     opacity: 0;
+    z-index: 1;
     transition: .5s; }
     .slider_main .slider_main_elem .slider_main_img {
       position: absolute;
@@ -262,7 +264,8 @@ body {
     .slider_main .slider_main_elem.active {
       opacity: 1;
       transition: .5s .3s;
-      transform: scale(1); }
+      transform: scale(1);
+      z-index: 2; }
   .slider_main .slider_main_control {
     display: flex;
     position: absolute;
@@ -295,19 +298,14 @@ body {
     top: 0;
     z-index: 3;
     right: 28.2vw;
+    height: 12.1875rem;
     width: 0.1875rem; }
-    .about_us #line1 line {
-      stroke-dasharray: 150%;
-      stroke-dashoffset: 150%; }
   .about_us #line2 {
     position: absolute;
-    top: 0;
+    top: 19.375rem;
     z-index: 3;
     left: 0;
     height: 0.1875rem; }
-    .about_us #line2 line {
-      stroke-dasharray: 150%;
-      stroke-dashoffset: 150%; }
   .about_us .st0 {
     fill: none;
     stroke: #3EC0DD;
@@ -379,18 +377,9 @@ body {
         display: block;
         font-size: 3.4375rem;
         position: relative; }
-        .about_us_success .success_content .success_text .success_interest::before, .about_us_success .success_content .success_text .success_interest::after {
-          content: "";
-          display: block;
+        .about_us_success .success_content .success_text .success_interest svg {
           position: absolute;
-          width: 20%;
-          height: 0.1875rem;
-          background-color: #1dc1e4;
-          top: 49%; }
-        .about_us_success .success_content .success_text .success_interest::before {
-          left: 12%; }
-        .about_us_success .success_content .success_text .success_interest::after {
-          right: 12%; }
+          width: 80px; }
 
 .left_img_bg {
   position: absolute;
@@ -408,7 +397,9 @@ body {
   z-index: 1;
   opacity: .13; }
 
-.practice {
-  height: 1000px; }
+.practice #line3 {
+  width: 50%;
+  margin-top: 12.5rem;
+  height: 35.5rem; }
 
 /*# sourceMappingURL=main.css.map*/
