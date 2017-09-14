@@ -5,7 +5,7 @@
     position: absolute;
     top: 0;
     z-index: 3;
-    right: 28.7vw;
+    right: 29.2vw;
     height: rem(195px);
     width: rem(3px);
   }
@@ -20,6 +20,7 @@
     fill: none;
     stroke: #3EC0DD;
     stroke-width: 3;
+    transition: .2s;
     stroke-miterlimit: 10;
   }
   .container {
@@ -103,16 +104,16 @@
           position: absolute;
           width: 80px;
         }
-        //&::before,&::after{
-        //  @include before_fig(20%,rem(3px),$sky-color);
-        //  top: 49%;
-        //}
-        //&::before{
-        //  left:12%;
-        //}
-        //&::after{
-        //  right:12%;
-        //}
+        &::before,&::after{
+          @include before_fig(20%,rem(3px),$sky-color);
+          top: 49%;
+        }
+        &::before{
+          left:12%;
+        }
+        &::after{
+          right:12%;
+        }
       }
     }
   }

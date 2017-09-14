@@ -22,6 +22,7 @@
     "webpack": "^3.3.0"
   },
   "dependencies": {
+    "scroll-parallax": "^2.0.2",
     "xhr-promise": "^2.0.0"
   }
 }

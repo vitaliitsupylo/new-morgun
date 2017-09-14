@@ -1,0 +1,61 @@
+.advantage{
+  position: relative;
+  overflow: hidden;
+  padding: rem(200px) 0 rem(130px);
+  &::before{
+    @include before_fig(100%,100%,rgba(40,40,64, .92));
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+  >img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .container{
+    position: relative;
+    z-index: 3;
+    padding: 0 rem(90px);
+    .title_block{
+      color: #fff;
+      margin-bottom: rem(100px);
+    }
+  }
+}
+.advantage_content{
+  display: flex;
+  flex-wrap: wrap;
+  .advantage_card{
+    color: #fff;
+    width: 100%;
+    max-width: 30%;
+    flex: 1 1 27%;
+    padding-right: rem(20px);
+    margin-bottom: rem(20px);
+    &.mode_width{
+      max-width: 58%;
+    }
+    .advantage_card_icon{
+      font-size: rem(60px);
+      font-style: normal;
+      display: inline-block;
+      margin-bottom: rem(15px);
+      line-height: 1;
+    }
+    .advantage_card_line{
+      display: block;
+      margin-bottom: rem(15px);
+      width:rem(97px);
+      height:rem(1px);
+      background-color: $sky-color;
+    }
+    .advantage_card_text{
+      font: 300 rem(18px)/1.6 $roboto;
+    }
+  }
+}

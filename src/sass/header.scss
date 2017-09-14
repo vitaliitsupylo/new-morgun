@@ -78,24 +78,3 @@
   }
 
 }
-.triangle {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: 3;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  .triangle_big{
-    width: 0;
-    height: 0;
-    border-bottom: rem(150px) solid #fff;
-    border-right: 70.4vw solid transparent;
-  }
-  .triangle_small{
-    width: 0;
-    height: 0;
-    border-bottom: rem(150px) solid #fff;
-    border-left: 29.6vw solid transparent;
-  }
-}
