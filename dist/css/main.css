@@ -57,16 +57,28 @@ abbr, acronym {
   clear: both; }
 
 body {
-  font: normal 1.125rem/1.5 "Sylfaen", sans-serif;
+  font: normal 1.125rem/1.5 "Sylfaen";
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
   padding-top: 12.25rem;
   color: #0b0a0d; }
 
+::-webkit-input-placeholder {
+  color: #272731;
+  font: normal 1.25rem/1.5 "Sylfaen"; }
+
+::-moz-placeholder {
+  color: #272731;
+  font: normal 1.25rem/1.5 "Sylfaen"; }
+
+:-ms-input-placeholder {
+  color: #272731;
+  font: normal 1.25rem/1.5 "Sylfaen"; }
+
 .container {
   width: 100%;
-  max-width: 82.5rem;
+  max-width: 76.25rem;
   margin: auto;
   padding: 0 0.625rem; }
 
@@ -114,12 +126,62 @@ body {
       height: 100%; }
 
 .title_block {
-  font: normal 2.5rem/1.2 "Sylfaen", sans-serif;
+  font: normal 2.6875rem/1.2 "Sylfaen";
   text-transform: uppercase;
   color: #0b0a0d; }
   .title_block span {
     text-transform: none;
     display: block; }
+
+.button_set {
+  position: absolute;
+  top: 20%;
+  display: flex;
+  width: 3.8125rem;
+  flex-direction: column;
+  right: 0;
+  z-index: 50; }
+  .button_set .get_feedback {
+    background-color: #1dc1e4;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    height: 4.375rem;
+    color: #fff;
+    margin-bottom: 0.0625rem; }
+  .button_set .social_block {
+    background-color: #282840;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
+
+.search {
+  width: 100%;
+  max-width: 21.875rem;
+  position: relative;
+  margin-left: 1.875rem; }
+  .search input {
+    width: 100%;
+    height: 3.125rem;
+    position: relative;
+    z-index: 1;
+    padding-right: 2.5rem;
+    border: none;
+    border-radius: 0;
+    font-size: 1.25rem;
+    border-bottom: solid 0.0625rem #272731; }
+  .search .set_search {
+    position: absolute;
+    top: 0.4375rem;
+    cursor: pointer;
+    width: 2.25rem;
+    height: 1.9375rem;
+    border: solid 0.0625rem #1dc1e4;
+    right: 0;
+    background-color: transparent;
+    color: #1dc1e4;
+    z-index: 2; }
 
 .header_main {
   position: absolute;
@@ -132,6 +194,7 @@ body {
   .header_main .container {
     height: 12.3125rem;
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center; }
     .header_main .container .logo {
@@ -139,6 +202,101 @@ body {
       max-width: 15.625rem; }
       .header_main .container .logo img {
         width: 100%; }
+
+.nav_main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  z-index: 50; }
+  .nav_main ul {
+    width: 20rem;
+    background-color: #fff;
+    display: flex;
+    min-height: 33.125rem;
+    padding: 4.375rem 0;
+    flex-wrap: wrap; }
+    .nav_main ul li {
+      padding: 0 1.25rem;
+      text-align: center;
+      height: 3.75rem;
+      width: 100%;
+      display: flex; }
+      .nav_main ul li a {
+        margin: auto;
+        text-transform: uppercase;
+        font: normal 1rem/1.2 "Sylfaen";
+        letter-spacing: 0.02rem;
+        position: relative;
+        background-color: #fff; }
+        .nav_main ul li a span {
+          background-color: #fff;
+          position: relative;
+          z-index: 2; }
+  .nav_main .list_page > li > a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0.125rem;
+    height: 0;
+    background-color: #1dc1e4;
+    top: 0;
+    transition: .3s;
+    left: 50%;
+    z-index: 1;
+    opacity: 0;
+    transform: rotate(45deg); }
+  .nav_main .list_page > li:hover > a::before {
+    opacity: 1;
+    height: 3.75rem;
+    top: -1.25rem; }
+  .nav_main .list_page > li:hover ul {
+    opacity: 1;
+    visibility: visible; }
+  .nav_main .list_page ul {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: .3s;
+    opacity: 0;
+    visibility: hidden; }
+    .nav_main .list_page ul li {
+      transition: .3s;
+      color: #0b0a0d; }
+      .nav_main .list_page ul li:hover {
+        color: #1dc1e4; }
+  .nav_main .scroll_nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 0.0625rem;
+    height: 100%;
+    background-color: #d4d4e8; }
+    .nav_main .scroll_nav i {
+      display: block;
+      position: absolute;
+      width: 0.875rem;
+      height: 0.75rem;
+      transition: .2s;
+      background-color: #1dc1e4;
+      top: 5%;
+      right: -0.375rem; }
+      .nav_main .scroll_nav i::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 2.875rem;
+        height: 0.0625rem;
+        background-color: #1dc1e4;
+        top: 0.25rem;
+        left: -1rem; }
+  .nav_main.active {
+    opacity: 1;
+    visibility: visible;
+    top: 100%; }
 
 .btn_nav {
   width: 2.25rem;
@@ -186,7 +344,7 @@ body {
     background-color: #1dc1e4; }
 
 .section_top {
-  height: calc(100vh - 12.25rem);
+  min-height: calc(100vh - 12.25rem);
   position: relative;
   overflow: hidden;
   width: 100%; }
@@ -227,26 +385,30 @@ body {
     position: absolute;
     z-index: 1; }
   .section_top .title_page {
-    position: absolute;
-    z-index: 3;
     bottom: 4.375rem;
-    width: 100%;
-    text-align: right;
-    right: 0;
+    position: absolute;
     padding-right: 17vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; }
+    right: 0; }
     .section_top .title_page .title_block {
-      color: #fff;
-      margin-bottom: 0.625rem;
-      padding-right: 5%; }
-    .section_top .title_page .title_page_line {
-      display: block;
-      margin-right: 10%;
-      height: 0.1875rem;
-      width: 10rem;
-      background-color: #fff; }
+      margin-right: 10%; }
+
+.title_page {
+  z-index: 3;
+  width: 100%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; }
+  .title_page .title_block {
+    color: #fff;
+    margin-bottom: 0.625rem;
+    padding-right: 5%; }
+
+.title_page_line {
+  display: block;
+  height: 0.1875rem;
+  width: 10rem;
+  background-color: #fff; }
 
 .slider_main {
   position: absolute;
@@ -487,6 +649,127 @@ body {
   opacity: .48;
   border-bottom: 20vw solid #f7f7f7;
   border-right: 15vw solid transparent; }
+
+.about_list {
+  width: 100%;
+  max-width: 25rem;
+  border-left: solid 0.1875rem #1dc1e4;
+  padding-left: 1.875rem;
+  padding-top: 0.625rem;
+  margin-bottom: 4.375rem; }
+  .about_list .about_list_title {
+    font: normal 1.875rem/1 "Sylfaen";
+    color: #1dc1e4;
+    text-transform: uppercase;
+    margin-bottom: 2.8125rem; }
+  .about_list .about_list_link {
+    width: 100%; }
+    .about_list .about_list_link li {
+      margin-bottom: 0.9375rem; }
+      .about_list .about_list_link li a {
+        display: inline-block;
+        padding: 0.625rem 0.625rem 0.625rem 0;
+        transition: .3s;
+        border-bottom: 0.0625rem solid transparent;
+        font: normal 1rem/0 "Sylfaen";
+        text-transform: uppercase; }
+        .about_list .about_list_link li a.active, .about_list .about_list_link li a:hover {
+          color: #1dc1e4;
+          border-bottom: 0.0625rem solid #1dc1e4; }
+
+.lawyer_img {
+  position: relative;
+  width: 100%;
+  max-width: 36.25rem;
+  height: auto; }
+
+.about_firm {
+  position: relative;
+  padding: 12.1875rem 0 6.25rem; }
+  .about_firm .about_firm_content {
+    width: 100%;
+    max-width: 82.5rem;
+    margin: auto;
+    display: flex; }
+    .about_firm .about_firm_content .about_firm_text {
+      width: 100%; }
+      .about_firm .about_firm_content .about_firm_text h1, .about_firm .about_firm_content .about_firm_text h2, .about_firm .about_firm_content .about_firm_text h3, .about_firm .about_firm_content .about_firm_text h4, .about_firm .about_firm_content .about_firm_text h5, .about_firm .about_firm_content .about_firm_text h6 {
+        font: normal 1.875rem/1.4 "Sylfaen";
+        letter-spacing: 0.0375rem;
+        margin-bottom: 2.25rem; }
+      .about_firm .about_firm_content .about_firm_text p {
+        font: 300 1.125rem/1.5 "Roboto", sans-serif;
+        margin-bottom: 1.25rem; }
+        .about_firm .about_firm_content .about_firm_text p b {
+          font-weight: 700; }
+      .about_firm .about_firm_content .about_firm_text .position {
+        text-transform: uppercase;
+        font: normal 1.25rem/1.4 "Sylfaen";
+        margin-bottom: 1.25rem; }
+      .about_firm .about_firm_content .about_firm_text.column > ul {
+        width: 100%;
+        list-style-position: inside;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+        text-indent: 40px;
+        margin-bottom: 1.25rem; }
+        .about_firm .about_firm_content .about_firm_text.column > ul li {
+          margin-bottom: 0.3125rem; }
+        .about_firm .about_firm_content .about_firm_text.column > ul ol li {
+          position: relative; }
+          .about_firm .about_firm_content .about_firm_text.column > ul ol li::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0.8125rem;
+            height: 0.0625rem;
+            background-color: #282840;
+            left: 0.9375rem;
+            top: 0.9375rem; }
+    .about_firm .about_firm_content .about_firm_right {
+      float: right;
+      display: inline;
+      width: 100%;
+      margin-left: 90px;
+      margin-bottom: 1.875rem;
+      max-width: 36.25rem; }
+      .about_firm .about_firm_content .about_firm_right .search {
+        margin-bottom: 3.125rem; }
+
+.quote_slider .quote_slider_elem {
+  width: 100%;
+  max-width: 61.25rem;
+  margin: auto;
+  text-align: center; }
+  .quote_slider .quote_slider_elem .blockquote {
+    width: 100%;
+    display: block;
+    max-width: 43.125rem;
+    margin: auto; }
+
+.quote_slider .quote_left, .quote_slider .quote_right {
+  display: block;
+  height: 4.125rem;
+  width: 5.375rem;
+  position: relative; }
+  .quote_slider .quote_left img, .quote_slider .quote_right img {
+    height: 4.125rem;
+    width: 5.375rem;
+    position: absolute; }
+
+.quote_slider .quote_right img {
+  transform: rotate(180deg); }
+
+.lawyer_contact {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 2.1875rem; }
+  .lawyer_contact a {
+    font: normal 1.25rem/1.4 "Sylfaen"; }
+    .lawyer_contact a i {
+      color: #1dc1e4;
+      margin-right: 0.4375rem; }
 
 .practice .title_block {
   text-align: right;
@@ -814,6 +1097,70 @@ body {
     border-right: 80vw solid #fff;
     border-bottom: 4.375rem solid transparent; }
 
+.contact_section {
+  margin-top: -50vh;
+  position: relative;
+  z-index: 4; }
+  .contact_section > .container {
+    display: flex;
+    align-items: flex-start; }
+    .contact_section > .container .contact_section_right {
+      width: 100%; }
+      .contact_section > .container .contact_section_right .address_content {
+        padding: 3.125rem; }
+        .contact_section > .container .contact_section_right .address_content .social_block {
+          margin-top: 1.875rem; }
+      .contact_section > .container .contact_section_right .title_page {
+        margin-bottom: 3.4375rem; }
+
+.contact_section_form {
+  padding: 4.6875rem;
+  background-color: #fff;
+  width: 100%; }
+  .contact_section_form .section_form_title {
+    font-size: 1.875rem;
+    margin-bottom: 1.25rem;
+    text-align: center; }
+  .contact_section_form .section_form_line {
+    display: block;
+    width: 6.5625rem;
+    height: 0.1875rem;
+    background-color: #1dc1e4;
+    margin: 0 auto 2.8125rem; }
+  .contact_section_form .section_form_text {
+    text-align: center;
+    font: 700 1.125rem/1.5 "Roboto", sans-serif;
+    color: #0b0a0d; }
+
+.feedback {
+  display: flex;
+  flex-wrap: wrap; }
+  .feedback input {
+    width: 100%;
+    flex: 1 1 100%;
+    height: 3.75rem;
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    font: normal 1.25rem/1.5 "Sylfaen";
+    color: #0b0a0d;
+    border-bottom: solid 0.0625rem rgba(39, 39, 49, 0.53);
+    margin-bottom: 0.625rem; }
+  .feedback .text_label {
+    color: #272731;
+    font: normal 1.25rem/1.5 "Sylfaen";
+    margin-top: 0.9375rem;
+    margin-bottom: 0.625rem; }
+  .feedback textarea {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background-color: #e1e7f3;
+    margin-bottom: 2.5rem; }
+  .feedback .btn {
+    background-color: transparent;
+    max-width: 100%; }
+
 .footer_address {
   position: relative;
   overflow: hidden; }
@@ -833,27 +1180,36 @@ body {
   .footer_address .parallax {
     position: absolute;
     z-index: 1; }
-  .footer_address .footer_address_content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
+
+.address_content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(40, 40, 64, 0.91);
+  padding: 4.375rem 0 3.125rem;
+  text-align: center;
+  font: 300 1.25rem/1.5 "Roboto", sans-serif; }
+  .address_content .address_title {
     color: #fff;
-    background-color: rgba(40, 40, 64, 0.91);
-    padding: 4.375rem 0 3.125rem;
-    text-align: center;
-    font: 300 1.25rem/1.5 "Roboto", sans-serif;
-    letter-spacing: 0.025rem; }
-    .footer_address .footer_address_content .address_title {
-      color: #fff;
-      font: normal 1.5rem/1.5 "Sylfaen", sans-serif;
-      padding-bottom: 1.25rem;
-      letter-spacing: 0.03rem; }
-    .footer_address .footer_address_content .address_phone {
-      color: #fff;
-      margin-bottom: 1.25rem; }
-      .footer_address .footer_address_content .address_phone i {
-        color: #1dc1e4;
-        margin-right: 0.3125rem; }
+    font: normal 1.5rem/1.5 "Sylfaen";
+    padding-bottom: 1.25rem;
+    letter-spacing: 0.03rem; }
+  .address_content .address_phone {
+    color: #fff;
+    margin-bottom: 1.25rem; }
+    .address_content .address_phone i {
+      color: #1dc1e4;
+      margin-right: 0.3125rem; }
+  .address_content .time_work {
+    line-height: 2; }
+    .address_content .time_work .time_work_title {
+      font: normal 1.875rem/1.5 "Sylfaen";
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 1.5625rem; }
+    .address_content .time_work .time_work_time {
+      margin-bottom: 1.5625rem; }
 
 .footer_main .footer_map {
   height: 25rem;

@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(7);
+module.exports = __webpack_require__(8);
 
 
 /***/ }),
@@ -87,9 +87,11 @@ module.exports = __webpack_require__(7);
     const mainRight = document.querySelector('.slider_main .control_right');
     /*victory slider*/
     const victorySlider = document.querySelector('.victory_slider');
-    const  victorySliderEl = document.querySelectorAll('.victory_slider .victory_slider_elem');
-    const  victorySliderDot = document.querySelector('.victory_slider .victory_slider_dot');
-
+    const victorySliderEl = document.querySelectorAll('.victory_slider .victory_slider_elem');
+    const victorySliderDot = document.querySelector('.victory_slider .victory_slider_dot');
+    /*menu*/
+    const openMenu = document.querySelector('.btn_nav');
+    const menu = document.querySelector('.nav_main');
     /*move lines*/
     const blockLine = document.querySelector('.about_us');
     const lineArr = document.querySelectorAll('.about_us .line>[class^="st"]');
@@ -106,19 +108,22 @@ module.exports = __webpack_require__(7);
     /*paralax all*/
     let Parallax = __webpack_require__(2);
     let p = new Parallax('.parallax').init();
-
+    /*menu*/
+    if (menu) {
+        (__webpack_require__(4))(openMenu, menu)
+    }
 
     /*main slider*/
     if (mainLeft && mainRight) {
-        (__webpack_require__(4))(mainArrElem, mainLeft, mainRight);
+        (__webpack_require__(5))(mainArrElem, mainLeft, mainRight);
     }
     /*victory slider*/
-    if(victorySlider){
-        (__webpack_require__(5))(victorySlider,victorySliderEl,victorySliderDot);
+    if (victorySlider) {
+        (__webpack_require__(6))(victorySlider, victorySliderEl, victorySliderDot);
     }
 
     /*move lines*/
-    let funcDraw = __webpack_require__(6);
+    let funcDraw = __webpack_require__(7);
     let drawLine = funcDraw();
     let drawLine2 = funcDraw();
     let drawLine3 = funcDraw();
@@ -132,8 +137,8 @@ module.exports = __webpack_require__(7);
         if (blockLinePractice) {
             drawLine2(lineArrPractice, blockLinePractice, scrolled);
         }
-        if(footer){
-            drawLine3(lineFooter,footer,scrolled);
+        if (footer) {
+            drawLine3(lineFooter, footer, scrolled);
         }
 
 
@@ -730,6 +735,34 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* 4 */
 /***/ (function(module, exports) {
 
+module.exports = (btn, menu) => {
+
+
+    let arrHoverList = menu.querySelectorAll('.list_page>li');
+    let scrollNav = menu.querySelector('.scroll_nav>i');
+
+    btn.addEventListener('click', function () {
+        this.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
+
+    for (let i = 0; i < arrHoverList.length; i++) {
+        arrHoverList[i].addEventListener('mouseover', () => {
+            let topMove = arrHoverList[i].offsetTop + (arrHoverList[i].clientHeight / 2 - scrollNav.clientHeight / 2);
+            scrollNav.style.top = `${topMove}px`;
+        });
+        arrHoverList[i].addEventListener('mouseout',()=>{
+            scrollNav.style.top = `5%`;
+        })
+    }
+
+
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
 module.exports = (arrElem, left, right) => {
 
     let yak = 0;
@@ -763,7 +796,7 @@ module.exports = (arrElem, left, right) => {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = (slider, elem, dot) => {
@@ -830,7 +863,7 @@ module.exports = (slider, elem, dot) => {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = () => {
@@ -915,7 +948,7 @@ module.exports = () => {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

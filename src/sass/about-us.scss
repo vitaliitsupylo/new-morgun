@@ -9,7 +9,7 @@
     height: rem(195px);
     width: rem(3px);
   }
-  .about_left{
+  .about_left {
     position: absolute;
     top: rem(307px);
     z-index: 3;
@@ -27,7 +27,7 @@
     display: flex;
     background-color: #fff;
     padding: rem(195px) rem(90px) rem(100px);
-  position: relative;
+    position: relative;
     z-index: 2;
   }
   .about_us_left {
@@ -66,6 +66,7 @@
     }
   }
 }
+
 .about_us_success {
   position: relative;
   align-self: flex-end;
@@ -89,60 +90,215 @@
     z-index: 2;
     padding: rem(50px) 0;
     background-color: rgba(40, 40, 64, .91);
-    .success_text{
+    .success_text {
       font-size: rem(27px);
       text-align: center;
       color: #fff;
-      .success_title{
+      .success_title {
         text-transform: uppercase;
       }
-      .success_interest{
+      .success_interest {
         display: block;
         font-size: rem(55px);
         position: relative;
-        svg{
+        svg {
           position: absolute;
           width: 80px;
         }
-        &::before,&::after{
-          @include before_fig(20%,rem(3px),$sky-color);
+        &::before, &::after {
+          @include before_fig(20%, rem(3px), $sky-color);
           top: 49%;
         }
-        &::before{
-          left:12%;
+        &::before {
+          left: 12%;
         }
-        &::after{
-          right:12%;
+        &::after {
+          right: 12%;
         }
       }
     }
   }
 }
-.left_img_bg{
+
+.left_img_bg {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
-  width:rem(312px);
+  width: rem(312px);
   opacity: .13;
 }
-.right_img_bg{
+
+.right_img_bg {
 
   position: absolute;
-  bottom:0;
-  width:rem(312px);
+  bottom: 0;
+  width: rem(312px);
   right: 0;
   z-index: 1;
   opacity: .13;
 }
-.about_triangle{
+
+.about_triangle {
   position: absolute;
   bottom: 15.5%;
   left: 0;
   width: 0;
   z-index: 1;
-	height: 0;
+  height: 0;
   opacity: .48;
-	border-bottom: 20vw solid #f7f7f7;
-	border-right: 15vw solid transparent;
+  border-bottom: 20vw solid #f7f7f7;
+  border-right: 15vw solid transparent;
+}
+
+.about_list {
+  width: 100%;
+  max-width: rem(400px);
+  border-left: solid rem(3px) $sky-color;
+  padding-left: rem(30px);
+  padding-top: rem(10px);
+  margin-bottom: rem(70px);
+  .about_list_title {
+    font: normal rem(30px)/1 $sylfaen;
+    color: $sky-color;
+    text-transform: uppercase;
+    margin-bottom: rem(45px);
+  }
+  .about_list_link {
+    width: 100%;
+    li {
+      margin-bottom: rem(15px);
+      a {
+        display: inline-block;
+        padding: rem(10px) rem(10px) rem(10px) 0;
+        transition: .3s;
+        border-bottom: rem(1px) solid transparent;
+        font: normal rem(16px)/0 $sylfaen;
+        text-transform: uppercase;
+        &.active, &:hover {
+          color: $sky-color;
+          border-bottom: rem(1px) solid $sky-color;
+        }
+      }
+
+    }
+  }
+}
+
+.lawyer_img {
+  position: relative;
+  width: 100%;
+  max-width: rem(580px);
+  height: auto;
+}
+
+.about_firm {
+  position: relative;
+  padding: rem(195px) 0 rem(100px);
+  .about_firm_content {
+    width: 100%;
+    max-width: rem(1320px);
+    margin: auto;
+    display: flex;
+    .about_firm_text {
+      //max-width: rem(680px);
+      width: 100%;
+      h1, h2, h3, h4, h5, h6 {
+        font: normal rem(30px)/1.4 $sylfaen;
+        letter-spacing: rem(.6px);
+        margin-bottom: rem(36px);
+      }
+      p {
+        font: 300 rem(18px)/1.5 $roboto;
+        margin-bottom: rem(20px);
+        b {
+          font-weight: 700;
+        }
+      }
+      .position {
+        text-transform: uppercase;
+        font: normal rem(20px)/1.4 $sylfaen;
+        margin-bottom: rem(20px);
+      }
+      &.column {
+        > ul {
+          width: 100%;
+          list-style-position: inside;
+          -moz-column-count: 2;
+          -webkit-column-count: 2;
+          column-count: 2;
+          text-indent: 40px;
+          margin-bottom: rem(20px);
+          li {
+            margin-bottom: rem(5px);
+          }
+          ol {
+            li {
+              position: relative;
+              &::before {
+                @include before_fig(rem(13px), rem(1px), $blue-color);
+                left: rem(15px);
+                top: rem(15px);
+              }
+            }
+          }
+        }
+      }
+    }
+    .about_firm_right {
+      float: right;
+      display: inline;
+      width: 100%;
+      margin-left: 90px;
+      margin-bottom: rem(30px);
+      max-width: rem(580px);
+      .search {
+        margin-bottom: rem(50px);
+      }
+    }
+  }
+}
+
+.quote_slider {
+  .quote_slider_elem {
+    width: 100%;
+    max-width: rem(980px);
+    margin: auto;
+    text-align: center;
+    .blockquote {
+      width: 100%;
+      display: block;
+      max-width: rem(690px);
+      margin: auto;
+    }
+  }
+  .quote_left, .quote_right {
+    display: block;
+    height: rem(66px);
+    width: rem(86px);
+    position: relative;
+    img {
+      height: rem(66px);
+      width: rem(86px);
+      position: absolute;
+    }
+  }
+  .quote_right{
+    img{
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.lawyer_contact {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: rem(35px);
+  a {
+    font: normal rem(20px)/1.4 $sylfaen;
+    i {
+      color: $sky-color;
+      margin-right: rem(7px);
+    }
+  }
 }

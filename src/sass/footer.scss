@@ -20,29 +20,40 @@
     position: absolute;
     z-index: 1;
   }
-  .footer_address_content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
+}
+.address_content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(40, 40, 64, .91);
+  padding: rem(70px) 0 rem(50px);
+  text-align: center;
+  font: 300 rem(20px)/1.5 $roboto;
+  .address_title {
     color: #fff;
-    background-color: rgba(40, 40, 64, .91);
-    padding: rem(70px) 0 rem(50px);
-    text-align: center;
-    font: 300 rem(20px)/1.5 $roboto;
-    letter-spacing: rem(.4px);
-    .address_title {
-      color: #fff;
-      font: normal rem(24px)/1.5 $sylfaen;
-      padding-bottom: rem(20px);
-      letter-spacing: rem(.48px);
+    font: normal rem(24px)/1.5 $sylfaen;
+    padding-bottom: rem(20px);
+    letter-spacing: rem(.48px);
+  }
+  .address_phone {
+    color: #fff;
+    margin-bottom: rem(20px);
+    i {
+      color: $sky-color;
+      margin-right: rem(5px);
     }
-    .address_phone {
-      color: #fff;
-      margin-bottom: rem(20px);
-      i {
-        color: $sky-color;
-        margin-right: rem(5px);
-      }
+  }
+  .time_work{
+    line-height: 2;
+    .time_work_title{
+      font: normal rem(30px)/1.5 $sylfaen;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: rem(25px);
+    }
+    .time_work_time{
+      margin-bottom: rem(25px);
     }
   }
 }

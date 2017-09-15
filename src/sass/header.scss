@@ -10,6 +10,7 @@
   .container {
     height: rem(197px);
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     .logo {
@@ -21,6 +22,113 @@
     }
   }
 }
+
+.nav_main {
+  position: absolute;
+  left: 0;
+  top:0;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  z-index: 50;
+  ul {
+    width: rem(320px);
+    background-color: #fff;
+    display: flex;
+    min-height: rem(530px);
+    padding: rem(70px) 0;
+    flex-wrap: wrap;
+    li {
+      padding: 0 rem(20px);
+      text-align: center;
+      height: rem(60px);
+      width: 100%;
+      display: flex;
+      a {
+        margin: auto;
+        text-transform: uppercase;
+        font: normal rem(16px)/1.2 $sylfaen;
+        letter-spacing: rem(.32px);
+        position:relative;
+        background-color: #fff;
+        span{
+          background-color: #fff;
+          position: relative;
+          z-index: 2;
+        }
+      }
+    }
+  }
+  .list_page {
+    & > li {
+      &>a::before {
+        @include before_fig(rem(2px), 0, $sky-color);
+        top: 0;
+        transition: .3s;
+        left: 50%;
+        z-index: 1;
+        opacity: 0;
+        transform: rotate(45deg);
+      }
+      &:hover {
+        &>a::before {
+          opacity: 1;
+          height:rem(60px);
+          top:rem(-20px);
+        }
+        ul {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    ul {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      transition: .3s;
+      opacity: 0;
+      visibility: hidden;
+      li{
+        transition: .3s;
+        color: $black-color;
+        &:hover{
+          color: $sky-color;
+        }
+      }
+    }
+  }
+  .scroll_nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: rem(1px);
+    height: 100%;
+    background-color: rgb(212, 212, 232);
+    i {
+      display: block;
+      position: absolute;
+      width: rem(14px);
+      height: rem(12px);
+      transition: .2s;
+      background-color: $sky-color;
+      top: 5%;
+      right: rem(-6px);
+      &::before {
+        @include before_fig(rem(46px), rem(1px), $sky-color);
+        top: rem(4px);
+        left: rem(-16px);
+      }
+    }
+  }
+  &.active{
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+  }
+}
+
 .btn_nav {
   width: rem(36px);
   height: rem(31px);
@@ -58,6 +166,7 @@
     }
   }
 }
+
 .languages {
   a {
     display: inline-block;
@@ -72,7 +181,7 @@
     &:hover, &.active {
       color: #fff;
     }
-    &.active{
+    &.active {
       background-color: $sky-color;
     }
   }

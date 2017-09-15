@@ -10,9 +10,11 @@
     const mainRight = document.querySelector('.slider_main .control_right');
     /*victory slider*/
     const victorySlider = document.querySelector('.victory_slider');
-    const  victorySliderEl = document.querySelectorAll('.victory_slider .victory_slider_elem');
-    const  victorySliderDot = document.querySelector('.victory_slider .victory_slider_dot');
-
+    const victorySliderEl = document.querySelectorAll('.victory_slider .victory_slider_elem');
+    const victorySliderDot = document.querySelector('.victory_slider .victory_slider_dot');
+    /*menu*/
+    const openMenu = document.querySelector('.btn_nav');
+    const menu = document.querySelector('.nav_main');
     /*move lines*/
     const blockLine = document.querySelector('.about_us');
     const lineArr = document.querySelectorAll('.about_us .line>[class^="st"]');
@@ -29,15 +31,18 @@
     /*paralax all*/
     let Parallax = require('scroll-parallax');
     let p = new Parallax('.parallax').init();
-
+    /*menu*/
+    if (menu) {
+        (require('./modules/menu'))(openMenu, menu)
+    }
 
     /*main slider*/
     if (mainLeft && mainRight) {
         (require('./modules/main-slider'))(mainArrElem, mainLeft, mainRight);
     }
     /*victory slider*/
-    if(victorySlider){
-        (require('./modules/victory-slider'))(victorySlider,victorySliderEl,victorySliderDot);
+    if (victorySlider) {
+        (require('./modules/victory-slider'))(victorySlider, victorySliderEl, victorySliderDot);
     }
 
     /*move lines*/
@@ -55,8 +60,8 @@
         if (blockLinePractice) {
             drawLine2(lineArrPractice, blockLinePractice, scrolled);
         }
-        if(footer){
-            drawLine3(lineFooter,footer,scrolled);
+        if (footer) {
+            drawLine3(lineFooter, footer, scrolled);
         }
 
 
